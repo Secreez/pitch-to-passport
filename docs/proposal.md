@@ -23,13 +23,15 @@
 
 ## Project Title
 
-Pitch to Passport — A Women's Champions League Talent Map
+Pitch to Passport — A Women's Champions League Talent Map (? Map.. well its both CLI and Map)
 
 ## Description
 
 > *Martin: Description of what you want to (try to) do*
 
 ...
+
+Link to our Repo: https://github.com/Secreez/pitch-to-passport
 
 ### Overall Goal
 
