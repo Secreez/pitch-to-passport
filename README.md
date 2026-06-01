@@ -62,6 +62,11 @@ pitch-to-passport/
 └── .gitignore
 ```
 
+## Known Data Notes (so far)
+
+- EMILY: Some players appear twice if they played for two clubs in the same season - 
+  [what are we gonna do about it?]
+
 ## Who does what - Division
 
 Emily:
@@ -80,5 +85,5 @@ Both:
 
 ## License
 
-Code: X
+Code: MIT
 Data: sourced from FBref - not redistributed
