@@ -73,7 +73,7 @@ Pitch to Passport — A Women's Champions League Talent Map
 **Max:**
 - **Data Cleaning with pandas** ... I'm very familiar with R when it comes to data cleaning (tidyverse/dplyr <3), but I have no clue about the "way of the pandas" nor am I a certified Pythonista. And I've quite literally dragged that along for years, even though I had Python in my Bachelor's Digitalization for a lot of ECTS. So... that's a big one. [HMM... MORE CONCRETE?]
 
-- **Documentation & GitHub** structuring things properly is my bread and butter at work, explaining and selling things to stakeholders. But I want to get better at doing that specifically in a software development context. [HOW, WHAT EXACTLY?]
+- **Documentation & GitHub** structuring things properly is my bread and butter at work, explaining and selling things to stakeholders. But I want to get better at doing that specifically in a software development context. [HOW, WHAT EXACTLY? I ALREADY DO GITHUB / STAKEHOLDER DOCUMENTATION AND UNDERSTANDING + FEATURE TRIAGE FOR A LIVING. WHAT SPECIFICALLY IN SOFTWARE DEV?]
 
 - **CLI development** I genuinely felt a spark of joy when we first touched argparse in class, (don't ask me for shit of why.). I want to spend a solid chunk of the ~25 hours diving deeper into building interactive CLI tools with `argparse` and `cmd`. [OKEH.. eh.]
 
