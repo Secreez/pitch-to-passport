@@ -55,6 +55,9 @@ pitch-to-passport/
 ├── data/
 │   ├── players.txt # Raw FBref copy-paste (not in repo)
 │   └── players.csv # Cleaned data (not in repo)
+├── docs/           # public deliverable
+└── proposal.md     # the actual deliverable
+└── time.md         # time tracking
 ├── format.py       # Data cleaning script
 ├── main.py         # CLI entry point
 ├── [placeholder]
@@ -62,24 +65,19 @@ pitch-to-passport/
 └── .gitignore
 ```
 
-## Known Data Notes (so far)
-
-- EMILY: Some players appear twice if they played for two clubs in the same season - 
-  [what are we gonna do about it?]
-
 ## Who does what - Division
 
-Emily:
+**Emily:**
 - Data analysis & validation
 - Football domain expertise
 - Map design (folium)
 
-Max:
+**Max:**
 - Data cleaning (format.py)
 - CLI logic (main.py)
 - Repo structure & documentation
 
-Both:
+**Both:**
 - Proposal
 - Individual reflection (mandatory after project)
 

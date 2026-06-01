@@ -34,6 +34,10 @@ for col in df.select_dtypes(include="object").columns: # select only string colu
 # Extract nationality and club name from FBref's prefixed format
 # TODO
 
+
+############# I'll keep it frozen for now until the Proposal is delivered! 
+
+
 # Club coordinates 'verified via Google Maps' will be pretty handy for the map.
 
 CLUB_COORDS = {
@@ -59,7 +63,6 @@ CLUB_COORDS = {
 
 # df.to_csv(OUTPUT_FILE, index=False, encoding="utf-8")
 
-
 def get_club_field(club, field):
     return CLUB_COORDS.get(club, {}).get(field)
 
@@ -71,3 +74,7 @@ def get_club_field(club, field):
 
 # User Friendly Output
 # TODO
+
+############# I'll keep it frozen for now until the Proposal is delivered! 
+############# I'll keep it frozen for now until the Proposal is delivered! 
+############# I'll keep it frozen for now until the Proposal is delivered! 
