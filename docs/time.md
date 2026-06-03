@@ -14,6 +14,8 @@
 
 ### Proposal 
 
+- Writing on Proposal and doing thinkythinky - 03.06 -> 25m
+
 
 ### Other
 

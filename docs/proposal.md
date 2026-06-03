@@ -29,7 +29,45 @@ Pitch to Passport — A Women's Champions League Talent Map (? Map.. well its bo
 
 > *Martin: Description of what you want to (try to) do*
 
+Pitch to Passport is an interactive Command Line Interface (CLI) tool designed to analyze and map the geographical origins and migratory flows of football talent in the 2025–26 UEFA Women's Champions League (UWCL).
+
+The software shall utilize a dual-layered approach to user interaction: immediate text-based data exploration within the terminal, and dynamic HTML spatial visualizations generated on demand based on feature.
+
+> **@Emily I whould write that actually quite User driven.. -> Lets be explicit here and Feature enables User to .. as -> WHAT and the HOW -> is the Description.**
+
+1. CLI-Only Features (Text-Based Data Analysis)
+
+These features focus on fast, tabular data querying, filtering, and aggregation directly inside the terminal environment:
+
+- Player Profile Exploration (`player <name>`): Enters a specific player's name .. 
+
+- Squad Metrics .... Breakdown: (`team <name>`): Queries a specific club to calculate aggregate squad metrics. It shall provide .. 
+
+- Side-by-Side Comparison (`compare <team1> <team2>): Allows users to input two clubs ...
+
 ...
+
+2. CLI + Map Output Features (Geospatial Visualization)
+
+These commands trigger the spatial data ... `folium`
+
+- Club Talent Pipeline Map (`map <team>`):
+
+- Global Flow Map (`map all`)
+
+...
+
+
+---
+| Command | Description |
+|---|---|
+| `player <name>` | Show stats for a specific player |
+| `team <name>` | Show squad nationality breakdown and top scorers |
+| `compare <team1> <team2>` | Side-by-side team comparison |
+| `map <team>` | Generate folium map for a club |
+| `map all` | Generate full global talent flow map |
+| `exit` | Exit the program |
+--- (just added that as a reminder for me xD - @Emily, feel free to add your commands in here that you want and are feasible ofc.)
 
 Link to our Repo: https://github.com/Secreez/pitch-to-passport
 
@@ -37,11 +75,18 @@ Link to our Repo: https://github.com/Secreez/pitch-to-passport
 
 > *Martin: the overall goal of your project (what should the software do)?*
 
-...
+**! The Overall Goal is the WHY and the BIG PICTURE ! Ergo: Why shit Matters .. higher-level insights .. core thesis of our tool - Something like ...:**
+
+The primary objective of Pitch to Passport is to bridge the gap between simple ass sports stats and spatial analytics, transofmring raw tabular football data into a macro-level vizualization snapshot of migrations trends within the UEFA in .. 
+
+
+So, instead of just looking at numbers on a spreadsheet, the software should enable the user to answer broader questions about the sport:
+
+
 
 ### Feasibility & Known Risks
 
-> **@Emily I suggest putting feasibility/risks here as its own subsection. Does that work for you?**
+> **@Emily I suggest putting feasibility/risks here as its own subsection? Is always cool to have and more honest. Even if he didn't asked for it explicitly.**
 
 - The data is manually sourced from FBref rather than scraped, which is a conscious tradeoff to keep the scope realistic and avoid bot-protection issues.
 - Emily: Some players appear twice in the dataset due to mid-season club transfers. This is a known data quirk that will be documented and handled in the cleaning step.
@@ -111,5 +156,5 @@ Link to our Repo: https://github.com/Secreez/pitch-to-passport
 
 - **Time:** ~25 hours per person (~50 hours total)
 - **Data:** Manually sourced from FBref (401 players, 2025-26 Women's CL season)
-- **Tools:** Python, GitHub, IDE: VS Code (Emily) / Positron (Max)
+- **Tools:** Python, GitHub, Git (VSC), IDE: VS Code (Emily) / Positron (Max), WhatsApp (lol)
 - **@Emily - anything to add here?**
