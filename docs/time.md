@@ -4,10 +4,10 @@
 
 | Date | Task | Time |
 |------|------|------|
-| 01.06 | Initiating repo and first project structure | 1.5h |
-| 01.06 | Initiated proposal structure | 0.5h |
-| 03.06 | Writing proposal & thinking through structure | .25h |
-| 04.06 | Further proposal work | .25h |
+| 01.06 | Initiating repo and first project structure | 1h 30m |
+| 01.06 | Initiated proposal structure | 30m |
+| 03.06 | Writing proposal & thinking through structure | 25m |
+| 04.06 | Further proposal work | 25m |
 
 **Max Total: ~3h / ~25h**
 
