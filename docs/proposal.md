@@ -96,13 +96,16 @@ So, instead of just looking at numbers on a spreadsheet, the software should ena
 
 > *Martin: The programming paradigm and approach (object-oriented, procedural, external packages, ...)*
 
-...
+In our case, the project uses a mixed paradigm:
 
-**External packages**
+- **Object-oriented:** as the CLI is built on `cmd.Cmd`, a Python base class that is inherited and extended with custom commands (`do_player`, `do_team` etc.)
 
-- `pandas` - data cleaning and analysis
-- `folium` - interactive map generation
-- `argparse` / `cmd` - CLI interface
+- **Procedural:** data cleaning and transformation in `format.py` follows a procedural approach with single-purpose functions
+
+- **External packages:** `pandas` for data handling, `folium` for spatial  map generation, `argparse` and `cmd` for the CLI interface
+
+**Language:** Python 3.x
+**Version control:** Git / GitHub
 
 ### Milestones & Intermediate Steps
 
@@ -118,13 +121,14 @@ So, instead of just looking at numbers on a spreadsheet, the software should ena
 > *Martin: your goals of what each of you wants to learn more about*
 
 **Max:**
-- **Data Cleaning with pandas** ... I'm very familiar with R when it comes to data cleaning (tidyverse/dplyr <3), but I have no clue about the "way of the pandas" nor am I a certified Pythonista. And I've quite literally dragged that along for years, even though I had Python in my Bachelor's Digitalization for a lot of ECTS. So... that's a big one. [HMM... MORE CONCRETE?]
 
-- **Documentation & GitHub** structuring things properly is my bread and butter at work, explaining and selling things to stakeholders. But I want to get better at doing that specifically in a software development context. [HOW, WHAT EXACTLY? I ALREADY DO GITHUB / STAKEHOLDER DOCUMENTATION AND UNDERSTANDING + FEATURE TRIAGE FOR A LIVING. WHAT SPECIFICALLY IN SOFTWARE DEV?]
+**Data Cleaning with pandas:** Well, I know R/tidyverse cold (dplyr is my comfort zone), but the "way of the pandas" — if you will — is genuinely new territory for me. Even after years of dragging Python along through my Bachelor's, I never properly sat down with it. And although, let's be honest, the hour investment won't be huge here, it still has meaning.
 
-- **CLI development** I genuinely felt a spark of joy when we first touched argparse in class, (don't ask me for shit of why.). I want to spend a solid chunk of the ~25 hours diving deeper into building interactive CLI tools with `argparse` and `cmd`. [OKEH.. eh.]
+**CLI edge case thinking:** I genuinely felt a spark of joy when we first touched argparse in class, weirdly enough. What excites me more than just building things (as in most cases I really don't care about building) is: did I actually think through the most important edge cases for an MVP? What happens when the user types something unexpected? Where does the scope realistically stop? How does a stakeholder think? That's the part I want to nail — more of a... "semantic product thinking exercise within the gamification of a CLI". One more thing. But there ain't no one more thing.
 
 **Emily:**
+
+...
 
 ## Responsibilities
 
@@ -132,15 +136,15 @@ So, instead of just looking at numbers on a spreadsheet, the software should ena
 
 | Task | Responsible |
 |------|-------------|
-| Data cleaning (`format.py`) | Max |
-| CLI logic (`main.py`) | Max |
-| Repo structure & documentation | Max |
-| Data analysis & validation | Emily |
-| Football domain expertise | Emily |
-| Map design (folium) | Emily |
+| Data cleaning & formatting (`format.py`)| Max |
+| CLI architecture & commands (`main.py`) | Max |
+| Repo structure, README & documentation | Max |
+| Data analysis, validation & duplicate handling | Emily |
+| Football domain expertise & stat interpretation | Emily |
+| Spatial map design & folium implementation | Emily |
+| Country centroid lookup & geocoordinate research | Both |
 | Proposal | Both |
-
-- **@Emily - should we be more concretre here?**
+| Reflection | Both (on our own) |
 
 ## Deadline
 
@@ -155,6 +159,16 @@ So, instead of just looking at numbers on a spreadsheet, the software should ena
 > *Martin: How much effort and resources will be required*
 
 - **Time:** ~25 hours per person (~50 hours total)
+    - Proposal & planning: ~3h each
+
+    - Data cleaning & ad-hoc pivots mid-project: ~5.5h (Max)  
+    - CLI & repo structure: ~11.5h (Max)
+
+    - Data analysis & map design: ~13h (Emily)
+
+    - Testing & polish: ~3h each
+    - Individual reflection: ~2h each
+
 - **Data:** Manually sourced from FBref (401 players, 2025-26 Women's CL season)
 - **Tools:** Python, GitHub, Git (VSC), IDE: VS Code (Emily) / Positron (Max), WhatsApp (lol)
 - **@Emily - anything to add here?**

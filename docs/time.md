@@ -1,31 +1,25 @@
-# Time used
+# Time Tracking
 
 ## Max
 
-### Data cleaning (format.py)
+| Date | Task | Time |
+|------|------|------|
+| 01.06 | Initiating repo and first project structure | 1.5h |
+| 01.06 | Initiated proposal structure | 0.5h |
+| 03.06 | Writing proposal & thinking through structure | .25h |
+| 04.06 | Further proposal work | .25h |
 
+**Max Total: ~3h / ~25h**
 
-### CLI logic (main.py)
+---
 
+## Emily
 
-### Repo structure & documentation 
+| Date | Task | Time |
+|------|------|------|
 
-- Iniating Repo and the first project structure, especially Proposal - 01.06 -> 2 hr
+**Emily Total: ~0h / ~25h**
 
-### Proposal 
+---
 
-- Writing on Proposal and doing thinkythinky - 03.06 -> 25m
-
-
-### Other
-
-### Total:
-
-...
-
-
-
-
-
-
-- Individual reflection (mandatory after project()
+## Combined Total: ~3h / ~50h
