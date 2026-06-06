@@ -23,7 +23,7 @@
 
 ## Project Title
 
-Pitch to Passport — A Women's Champions League Talent Map (? Map.. well its both CLI and Map)
+Pitch to Passport — A Women's Champions League Talent Map
 
 ## Description
 
@@ -39,19 +39,20 @@ The software shall utilize a dual-layered approach to user interaction: immediat
 
 These features focus on fast, tabular data querying, filtering, and aggregation directly inside the terminal environment:
 
-- Player Profile Exploration (`player <name>`): Enters a specific player's name .. 
+- Player Profile Exploration (`player <name>`): Enters a specific player's name ... 
 
-- Squad Metrics .... Breakdown: (`team <name>`): Queries a specific club to calculate aggregate squad metrics. It shall provide .. 
+- Squad Metrics .... Breakdown: (`team <name>`): Queries a specific club to calculate aggregate squad metrics. It shall provide ... 
 
-- Side-by-Side Comparison (`compare <team1> <team2>): Allows users to input two clubs ...
-
-...
+- Side-by-Side Comparison (`compare <team1> <team2>): Allows users to input two clubs 
+... what exactly gets compared? Goals, assists, nationality diversity, age?
 
 2. CLI + Map Output Features (Geospatial Visualization)
 
 These commands trigger the spatial data ... `folium`
 
 - Club Talent Pipeline Map (`map <team>`):
+
+...
 
 - Global Flow Map (`map all`)
 
@@ -67,7 +68,8 @@ These commands trigger the spatial data ... `folium`
 | `map <team>` | Generate folium map for a club |
 | `map all` | Generate full global talent flow map |
 | `exit` | Exit the program |
---- (just added that as a reminder for me xD - @Emily, feel free to add your commands in here that you want and are feasible ofc.)
+--- 
+(just added that as a reminder for me xD. **@Emily, feel free to add your commands in here that you want and are feasible ofc + what they actually should do, see above..**)
 
 Link to our Repo: https://github.com/Secreez/pitch-to-passport
 
@@ -77,19 +79,27 @@ Link to our Repo: https://github.com/Secreez/pitch-to-passport
 
 **! The Overall Goal is the WHY and the BIG PICTURE ! Ergo: Why shit Matters .. higher-level insights .. core thesis of our tool - Something like ...:**
 
-The primary objective of Pitch to Passport is to bridge the gap between simple ass sports stats and spatial analytics, transofmring raw tabular football data into a macro-level vizualization snapshot of migrations trends within the UEFA in .. 
-
+The primary objective of Pitch to Passport is to bridge the gap between simple ass sports stats and spatial analytics, transforming raw tabular football data into a macro-level vizualization snapshot of migrations trends within the UEFA in .. 
 
 So, instead of just looking at numbers on a spreadsheet, the software should enable the user to answer broader questions about the sport:
 
-
+- Where does winning talent come from geographically?
+- Which clubs attract the most international players?
+- Which countries export talent without having a club in the competition?
 
 ### Feasibility & Known Risks
 
 > **@Emily I suggest putting feasibility/risks here as its own subsection? Is always cool to have and more honest. Even if he didn't asked for it explicitly.**
 
-- The data is manually sourced from FBref rather than scraped, which is a conscious tradeoff to keep the scope realistic and avoid bot-protection issues.
-- Emily: Some players appear twice in the dataset due to mid-season club transfers. This is a known data quirk that will be documented and handled in the cleaning step.
+- The data is manually sourced from FBref rather than scraped, which is a 
+  conscious tradeoff to keep the scope realistic and avoid bot-protection issues.
+- Some players appear twice in the dataset due to mid-season club transfers.
+  This is a known data quirk that will be documented and handled in the cleaning step.
+- Player name matching is case-insensitive but requires exact spelling — 
+  partial name search is a nice-to-have, not guaranteed in the MVP.
+- Generated maps are HTML files opened in the default browser — assumes a 
+  browser is available on the user's machine.
+  
 - **@Emily ... add any other data discrepancies you found here so far**
 
 ### Programming Paradigm & Approach
@@ -111,10 +121,14 @@ In our case, the project uses a mixed paradigm:
 
 > *Martin: Intermediate steps and milestones*
 
-1. ...
-2. ...
-3. ...
-4. ...
+1. **Proposal & Planning:** define scope, feature triage, repo structure, data sourcing *in doing*
+2. **Data Foundation:** `format.py` complete, clean CSV ready, duplicates handled
+3. **CLI Core:** `player`, `team`, `compare` commands working with proper edge case handling
+4. **Spatial Layer:** `map <team>` and `map all` generating correct folium HTML maps
+5. **Testing & Polish:** edge cases tested, documentation finalised, repo clean
+6. **Submission:** final code pushed, individual reflections written separately
+
+**@Emily that is so far.. rooooooooooooooughly, please add in here also you're advancements for the project you thought of..**
 
 ## Learning Goals
 
@@ -158,17 +172,17 @@ In our case, the project uses a mixed paradigm:
 
 > *Martin: How much effort and resources will be required*
 
-- **Time:** ~25 hours per person (~50 hours total)
-    - Proposal & planning: ~3h each
+- **Time:** 25 hours per person (50 hours total)
+    - **Proposal & planning:** ~3h each
+    - **Data cleaning & ad-hoc pivots mid-project:** ~5.5h (Max)
+    - **CLI & repo structure:** ~11.5h (Max)
+    - **Data analysis & map design:** ~13h (Emily)
+    - **Testing & polish:** ~3h each
+    - **Individual reflection:** ~2h each
 
-    - Data cleaning & ad-hoc pivots mid-project: ~5.5h (Max)  
-    - CLI & repo structure: ~11.5h (Max)
-
-    - Data analysis & map design: ~13h (Emily)
-
-    - Testing & polish: ~3h each
-    - Individual reflection: ~2h each
-
-- **Data:** Manually sourced from FBref (401 players, 2025-26 Women's CL season)
-- **Tools:** Python, GitHub, Git (VSC), IDE: VS Code (Emily) / Positron (Max), WhatsApp (lol)
-- **@Emily - anything to add here?**
+- **Tools:** Python, GitHub, Git, IDE: VS Code (Emily) / Positron (Max)
+- **Data sources:**
+    - **FBref (fbref.com):**player stats, manually exported
+    - **Google Maps:** stadium coordinate verification
+    - **OpenStreetMap (via folium):** base map tiles
+- **Communication:** WhatsApp (lol)

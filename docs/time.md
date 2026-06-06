@@ -2,18 +2,29 @@
 
 ## Max
 
+**CLI & repo structure:**
+
 | Date | Task | Time |
 |------|------|------|
-| 01.06 | Initiating repo and first project structure | 1h 30m |
-| 01.06 | Initiated proposal structure | 30m |
-| 03.06 | Writing proposal & thinking through structure | 25m |
-| 04.06 | Further proposal work | 25m |
+| 01.06 | Initiating repo and first project structure | 1h 30m | 
+| 03.06 | Checked project structure | 10m |
 
-**Max Total: ~3h / ~25h**
+**Proposal:**
+
+| Date | Task | Time |
+|------|------|------|
+| 01.06 | Initiated proposal structure | 30m |
+| 03.06 | Writing proposal structure further | 15m |
+| 04.06 | Further proposal work: Learning Goals, Efford estimates .. | 25m |
+| 06.06 | Further proposal work: Intermediate steps, Feasibility and risks .. | 20m |
+
+**Max Total: x / ~25h**
 
 ---
 
 ## Emily
+
+**@Emily, feel free if you want to. idk, I plan to be explicitied for my own report**
 
 | Date | Task | Time |
 |------|------|------|
