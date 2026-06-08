@@ -17,6 +17,7 @@
 | 03.06 | Writing proposal structure further | 15m |
 | 04.06 | Further proposal work: Learning Goals, Efford estimates .. | 25m |
 | 06.06 | Further proposal work: Intermediate steps, Feasibility and risks .. | 20m |
+| 08.06 | Further proposal work: Things I could do alone so far without Emily | 10m |
 
 **Max Total: x / ~25h**
 

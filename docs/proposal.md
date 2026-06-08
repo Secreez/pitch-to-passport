@@ -12,6 +12,16 @@
 > - 1-2 pages maximum
 > (See Blackboard for more info under: Final Project Proposal)
 
+
+
+@Emily it still needs:
+
+- Your learning goals
+- Compare metrics confirmation
+- Data discrepancies
+- The ... placeholders in the Description section
+- The rooooooughly note in Milestones :>
+
 ---
 
 **Course:** Basics of Software Development Practice SS 2026
@@ -62,11 +72,11 @@ These commands trigger the spatial data ... `folium`
 ---
 | Command | Description |
 |---|---|
-| `player <name>` | Show stats for a specific player |
-| `team <name>` | Show squad nationality breakdown and top scorers |
-| `compare <team1> <team2>` | Side-by-side team comparison |
-| `map <team>` | Generate folium map for a club |
-| `map all` | Generate full global talent flow map |
+| `player <name>` | Returns a player's position, nationality, club, goals, assists, minutes played and cards. |
+| `team <name>` | Returns squad size, nationality breakdown, top scorer, most assists and average age. (@**Emily what ever you see fit here else ..** )|
+| `compare <team1> <team2>` | Side-by-side comparison of goals, assists, nationality diversity and average age. (**@Emily what ever you see fit here else ..** ) |
+| `map <team>` | Generates an HTML map with lines from each player's home country to the club location, with player popups. |
+| `map all` | Same as above but for all x clubs and x players at once. |
 | `exit` | Exit the program |
 --- 
 (just added that as a reminder for me xD. **@Emily, feel free to add your commands in here that you want and are feasible ofc + what they actually should do, see above..**)
@@ -79,7 +89,7 @@ Link to our Repo: https://github.com/Secreez/pitch-to-passport
 
 **! The Overall Goal is the WHY and the BIG PICTURE ! Ergo: Why shit Matters .. higher-level insights .. core thesis of our tool - Something like ...:**
 
-The primary objective of Pitch to Passport is to bridge the gap between simple ass sports stats and spatial analytics, transforming raw tabular football data into a macro-level vizualization snapshot of migrations trends within the UEFA in .. 
+The primary objective of Pitch to Passport is to bridge the gap between raw sports statistics and spatial analytics, transforming tabular football data into a macro-level visualization of talent migration trends across the 2025–26 UEFA Women's Champions League.
 
 So, instead of just looking at numbers on a spreadsheet, the software should enable the user to answer broader questions about the sport:
 
@@ -121,7 +131,7 @@ In our case, the project uses a mixed paradigm:
 
 > *Martin: Intermediate steps and milestones*
 
-1. **Proposal & Planning:** define scope, feature triage, repo structure, data sourcing *in doing*
+1. **Proposal & Planning:** define scope, feature triage, repo structure, data sourcing *in progress*
 2. **Data Foundation:** `format.py` complete, clean CSV ready, duplicates handled
 3. **CLI Core:** `player`, `team`, `compare` commands working with proper edge case handling
 4. **Spatial Layer:** `map <team>` and `map all` generating correct folium HTML maps
@@ -164,9 +174,7 @@ In our case, the project uses a mixed paradigm:
 
 > *Martin: When you plan to have it done: set your own deadline -> any time from July until end of August*
 
-**Submission deadline: ...**
-
-- **@Emily - .. August somethingsomething?**
+- **Submission deadline: August 15th, 2026 (@Emily you fine with that? Else write me.)**
 
 ## Effort Estimate
 
