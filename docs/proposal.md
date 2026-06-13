@@ -1,29 +1,5 @@
 # Final Project Proposal - Group: Pitch to Passport
 
----
-
-> **NOTE FOR US**
->
-> Martin's key points for the proposal:
-> - Practice a structured approach to software development
-> - Evaluate **feasibility before starting to program**
-> - The **process is more important than the outcome** -> be realistic and convincing
-> - An **individual reflection after group submission is mandatory** (submitted separately, not in this document)
-> - 1-2 pages maximum
-> (See Blackboard for more info under: Final Project Proposal)
-
-
-
-@Emily it still needs:
-
-- Your learning goals
-- Compare metrics confirmation
-- Data discrepancies
-- The ... placeholders in the Description section
-- The rooooooughly note in Milestones :>
-
----
-
 **Course:** Basics of Software Development Practice SS 2026
 **Department:** Z_GIS, University of Salzburg
 
@@ -36,8 +12,6 @@
 Pitch to Passport — A Women's Champions League Talent Map
 
 ## Description
-
-> *Martin: Description of what you want to (try to) do*
 
 Pitch to Passport is an interactive Command Line Interface (CLI) tool designed to analyze and map the geographical origins and migratory flows of football talent in the 2025–26 UEFA Women's Champions League (UWCL).
 
@@ -67,27 +41,9 @@ This feature enables users to see where a club's players originate from geograph
 
 This feature enables users to explore talent migration patterns across all featured clubs in the Women's Champions League. Users get to see which countries are talent-exporting and talent-importing countries.
 
-
----
-| Command | Description |
-|---|---|
-| `player <name>` | Returns a player's position, nationality, club, goals, assists, minutes played and cards. |
-| `team <name>` | Returns squad size, average age, nationality breakdown, top scorer, most assists and average age. |
-| `compare <player1> <player2>` | Side-by-side comparison of goals, assists, club, ... |
-| `compare <team1> <team2>` | Side-by-side comparison of goals, assists, nationality diversity and average age.  |
-| `map <team>` | Generates an HTML map with lines from each player's home country to the club location, with player popups. |
-| `map all` | Same as above but for all x clubs and x players at once. |
-| `exit` | Exit the program |
---- 
-(just added that as a reminder for me xD. **@Emily, feel free to add your commands in here that you want and are feasible ofc + what they actually should do, see above..**)
-
 Link to our Repo: https://github.com/Secreez/pitch-to-passport
 
 ### Overall Goal
-
-> *Martin: the overall goal of your project (what should the software do)?*
-
-**! The Overall Goal is the WHY and the BIG PICTURE ! Ergo: Why shit Matters .. higher-level insights .. core thesis of our tool - Something like ...:**
 
 The primary objective of Pitch to Passport is to bridge the gap between raw sports statistics and spatial analytics, transforming tabular football data into a macro-level visualization of talent migration trends across the 2025–26 UEFA Women's Champions League.
 
@@ -113,8 +69,6 @@ So, instead of just looking at numbers on a spreadsheet, the software should ena
 
 ### Programming Paradigm & Approach
 
-> *Martin: The programming paradigm and approach (object-oriented, procedural, external packages, ...)*
-
 In our case, the project uses a mixed paradigm:
 
 - **Object-oriented:** as the CLI is built on `cmd.Cmd`, a Python base class that is inherited and extended with custom commands (`do_player`, `do_team` etc.)
@@ -128,8 +82,6 @@ In our case, the project uses a mixed paradigm:
 
 ### Milestones & Intermediate Steps
 
-> *Martin: Intermediate steps and milestones*
-
 1. **Proposal & Planning:** define scope, feature triage, repo structure, data sourcing *in progress*
 2. **Data Foundation:** `format.py` complete, clean CSV ready, duplicates handled
 3. **CLI Core:** `player`, `team`, `compare` commands working with proper edge case handling
@@ -140,21 +92,15 @@ In our case, the project uses a mixed paradigm:
 
 ## Learning Goals
 
-> *Martin: your goals of what each of you wants to learn more about*
-
 **Max:**
 
-**Data Cleaning with pandas:** Well, I know R/tidyverse cold (dplyr is my comfort zone), but the "way of the pandas" — if you will — is genuinely new territory for me. Even after years of dragging Python along through my Bachelor's, I never properly sat down with it. And although, let's be honest, the hour investment won't be huge here, it still has meaning.
-
-**CLI edge case thinking:** I genuinely felt a spark of joy when we first touched argparse in class, weirdly enough. What excites me more than just building things (as in most cases I really don't care about building) is: did I actually think through the most important edge cases for an MVP? What happens when the user types something unexpected? Where does the scope realistically stop? How does a stakeholder think? That's the part I want to nail — more of a... "semantic product thinking exercise within the gamification of a CLI". One more thing. But there ain't no one more thing.
+**CLI edge case thinking:** I genuinely felt a spark of joy when we first touched argparse in class, weirdly enough. What excites me more than just building things (as in most cases I really don't care about building) is: did I actually think through the most important edge cases for an MVP? What happens when the user types something unexpected? Where does the scope realistically stop? How does a stakeholder think? That's the part I want to nail — more of a... "semantic product thinking exercise within the gamification of a CLI". Now those are words.
 
 **Emily:**
 
 **Creating an interactive webmap (with Folium):** So, I have never used Folium before and am interested to learn how to create interactive webmaps with Python since it is a much more interesting way to explore data. 
 
 ## Responsibilities
-
-> *Martin: Include who in the group is responsible for what*
 
 | Task | Responsible |
 |------|-------------|
@@ -170,13 +116,9 @@ In our case, the project uses a mixed paradigm:
 
 ## Deadline
 
-> *Martin: When you plan to have it done: set your own deadline -> any time from July until end of August*
-
 - **Submission deadline: August 15th, 2026**
 
 ## Effort Estimate
-
-> *Martin: How much effort and resources will be required*
 
 - **Time:** 25 hours per person (50 hours total)
     - **Proposal & planning:** ~3h each
@@ -186,9 +128,9 @@ In our case, the project uses a mixed paradigm:
     - **Testing & polish:** ~3h each
     - **Individual reflection:** ~2h each
 
-- **Tools:** Python, GitHub, Git, IDE: VS Code (Emily) / Positron (Max)
+- **Tools:** Python, GitHub, Git, IDE: VS Code
 - **Data sources:**
-    - **FBref (fbref.com), ESPN:**player stats, manually exported
+    - **FBref (fbref.com), ESPN:** player stats, manually exported
     - **Google Maps:** stadium coordinate verification
     - **OpenStreetMap (via folium):** base map tiles
-- **Communication:** WhatsApp (lol)
+- **Communication:** WhatsApp 
