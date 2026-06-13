@@ -43,38 +43,38 @@ Pitch to Passport is an interactive Command Line Interface (CLI) tool designed t
 
 The software shall utilize a dual-layered approach to user interaction: immediate text-based data exploration within the terminal, and dynamic HTML spatial visualizations generated on demand based on feature.
 
-> **@Emily I whould write that actually quite User driven.. -> Lets be explicit here and Feature enables User to .. as -> WHAT and the HOW -> is the Description.**
-
 1. CLI-Only Features (Text-Based Data Analysis)
 
 These features focus on fast, tabular data querying, filtering, and aggregation directly inside the terminal environment:
 
-- Player Profile Exploration (`player <name>`): Enters a specific player's name ... 
+- Player Profile Exploration (`player <name>`): Enters a specific player's name and gives information about full name, birthday/age, nationality, current club, former club if they signed with another during the season, number, positions played. 
 
-- Squad Metrics .... Breakdown: (`team <name>`): Queries a specific club to calculate aggregate squad metrics. It shall provide ... 
+- Squad Metrics .... Breakdown: (`team <name>`): Queries a specific club to calculate aggregate squad metrics. It shall provide squad size, average age, number of different nationalities, goals and assists, home stadium.
 
-- Side-by-Side Comparison (`compare <team1> <team2>): Allows users to input two clubs 
-... what exactly gets compared? Goals, assists, nationality diversity, age?
+- Side-by-Side Comparison (`compare <player1> <player2>`): Allows users to input two players and compare their stats (goals, assists, club, ...).
+
+- Side-by-Side Comparison (`compare <team1> <team2>`): Allows users to input two clubs and compare their squad depth, market value, games played overall in the league, goals, assists, top scorer, age, nationality diversity, champions league trophies.
 
 2. CLI + Map Output Features (Geospatial Visualization)
 
-These commands trigger the spatial data ... `folium`
+These commands trigger the spatial data and generate interactive maps using `folium` that can be viewed in a web browser.
 
 - Club Talent Pipeline Map (`map <team>`):
 
-...
+This feature enables users to see where a club's players originate from geographically. The command generates an HTML map that links a player's home country with the club they're currently playing at. It will also show the most important facts about the player through a popup.
 
 - Global Flow Map (`map all`)
 
-...
+This feature enables users to explore talent migration patterns across all featured clubs in the Women's Champions League. Users get to see which countries are talent-exporting and talent-importing countries.
 
 
 ---
 | Command | Description |
 |---|---|
 | `player <name>` | Returns a player's position, nationality, club, goals, assists, minutes played and cards. |
-| `team <name>` | Returns squad size, nationality breakdown, top scorer, most assists and average age. (@**Emily what ever you see fit here else ..** )|
-| `compare <team1> <team2>` | Side-by-side comparison of goals, assists, nationality diversity and average age. (**@Emily what ever you see fit here else ..** ) |
+| `team <name>` | Returns squad size, average age, nationality breakdown, top scorer, most assists and average age. |
+| `compare <player1> <player2>` | Side-by-side comparison of goals, assists, club, ... |
+| `compare <team1> <team2>` | Side-by-side comparison of goals, assists, nationality diversity and average age.  |
 | `map <team>` | Generates an HTML map with lines from each player's home country to the club location, with player popups. |
 | `map all` | Same as above but for all x clubs and x players at once. |
 | `exit` | Exit the program |
@@ -99,10 +99,10 @@ So, instead of just looking at numbers on a spreadsheet, the software should ena
 
 ### Feasibility & Known Risks
 
-> **@Emily I suggest putting feasibility/risks here as its own subsection? Is always cool to have and more honest. Even if he didn't asked for it explicitly.**
-
 - The data is manually sourced from FBref rather than scraped, which is a 
   conscious tradeoff to keep the scope realistic and avoid bot-protection issues.
+- Across different platforms, the data can sometimes vary, so it is sometimes
+  unclear which data is correct.  
 - Some players appear twice in the dataset due to mid-season club transfers.
   This is a known data quirk that will be documented and handled in the cleaning step.
 - Player name matching is case-insensitive but requires exact spelling — 
@@ -110,7 +110,6 @@ So, instead of just looking at numbers on a spreadsheet, the software should ena
 - Generated maps are HTML files opened in the default browser — assumes a 
   browser is available on the user's machine.
   
-- **@Emily ... add any other data discrepancies you found here so far**
 
 ### Programming Paradigm & Approach
 
@@ -138,7 +137,6 @@ In our case, the project uses a mixed paradigm:
 5. **Testing & Polish:** edge cases tested, documentation finalised, repo clean
 6. **Submission:** final code pushed, individual reflections written separately
 
-**@Emily that is so far.. rooooooooooooooughly, please add in here also you're advancements for the project you thought of..**
 
 ## Learning Goals
 
@@ -152,7 +150,7 @@ In our case, the project uses a mixed paradigm:
 
 **Emily:**
 
-...
+**Creating an interactive webmap (with Folium):** So, I have never used Folium before and am interested to learn how to create interactive webmaps with Python since it is a much more interesting way to explore data. 
 
 ## Responsibilities
 
@@ -174,7 +172,7 @@ In our case, the project uses a mixed paradigm:
 
 > *Martin: When you plan to have it done: set your own deadline -> any time from July until end of August*
 
-- **Submission deadline: August 15th, 2026 (@Emily you fine with that? Else write me.)**
+- **Submission deadline: August 15th, 2026**
 
 ## Effort Estimate
 
@@ -190,7 +188,7 @@ In our case, the project uses a mixed paradigm:
 
 - **Tools:** Python, GitHub, Git, IDE: VS Code (Emily) / Positron (Max)
 - **Data sources:**
-    - **FBref (fbref.com):**player stats, manually exported
+    - **FBref (fbref.com), ESPN:**player stats, manually exported
     - **Google Maps:** stadium coordinate verification
     - **OpenStreetMap (via folium):** base map tiles
 - **Communication:** WhatsApp (lol)
