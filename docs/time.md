@@ -18,8 +18,11 @@
 | 04.06 | Further proposal work: Learning Goals, Efford estimates .. | 25m |
 | 06.06 | Further proposal work: Intermediate steps, Feasibility and risks .. | 20m |
 | 08.06 | Further proposal work: Things I could do alone so far without Emily | 10m |
+| 13.06 | Final proposal work: Cleaned up things after discussion prepped for Proposal Deliverable  + made it shorter for the 2 Pages max. Rule | 1h 10m |
 
-**Max Total: x / ~25h**
+~ 2h50m
+
+**Max Total: xh / ~25h**
 
 ---
 
