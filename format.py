@@ -24,22 +24,32 @@ print(f"Reading {INPUT_FILE}...")
 df = pd.read_csv(INPUT_FILE, sep="\t", encoding="utf-8")
 df.columns = df.columns.str.strip() # strips the column names itself: "Player " -> "Player"
 
+# Numeric filtering 
+df = df[pd.to_numeric(df["Rk"], errors="coerce").notnull()]
 
-df = df[df["Rk"].apply(lambda x: str(x).strip().isdigit())] # removes where 'string : RK' row is not a number
-for col in df.select_dtypes(include="object").columns: # select only string colums then strip whitespace from each
-    df[col] = df[col].str.strip()
-
-
-
-# Extract nationality and club name from FBref's prefixed format
-# TODO
+# Bulk cleanup of string columns
+obj_cols = df.select_dtypes(include="object").columns
+df[obj_cols] = df[obj_cols].apply(lambda x: x.str.strip())
 
 
-############# I'll keep it frozen for now until the Proposal is delivered! 
+# Extracting NationCode and ClubName from the raw columns
+# So what we basicaly want is:
+# Nation column contains "ng NGA" -> we want NGA
+# Squad column contains "eng Arsenal" -> we want Arsenal.
+#print(df.head())
+#print(df.info())
 
+# Extracting NationCode: splits by space and takes the last element ('ng NGA' -> 'NGA')
+df["Nation"] = df["Nation"].str.split().str[-1]
+
+# Extracting Squad: splits by space and takes the last element, 
+# + ensuring we keep the team name even if it's multiple words (e.g.,'eng Real Madrid' -> 'Real Madrid') 
+# via the n=1
+df["Squad"] = df["Squad"].str.split(' ', n=1).str[-1]
+
+print(df[["Nation", "Squad"]])
 
 # Club coordinates 'verified via Google Maps' will be pretty handy for the map.
-
 CLUB_COORDS = {
     "Arsenal":         {"country": "England",     "lat": 51.5550, "lon": -0.1084},
     "Chelsea":         {"country": "England",     "lat": 51.4817, "lon": -0.1909},
@@ -66,15 +76,27 @@ CLUB_COORDS = {
 def get_club_field(club, field):
     return CLUB_COORDS.get(club, {}).get(field)
 
-# LOGIC apply into ClubName for ClubCountry, ClubLat, ClubLon
-# TODO
+# LOGIC apply get_club_field func into ClubName for ClubCountry, ClubLat, ClubLon
+
+df["ClubCountry"] = df["Squad"].apply(lambda x: get_club_field(x, "country"))
+df["ClubLat"] = df["Squad"].apply(lambda x: get_club_field(x, "lat"))
+df["ClubLon"] = df["Squad"].apply(lambda x: get_club_field(x, "lon"))
+
+
+# if any typos in Squad names that don't match dict 
+missing_clubs = df[df["ClubCountry"].isna()]["Squad"].unique( )
+if len(missing_clubs) > 0:
+    print(f"Warning: following clubs were not found in CLUB_COORDS: {missing_clubs}")
+
+#[401 rows x 2 columns]
+#Warning: following clubs were not found in CLUB_COORDS: ['St. Pölten' 'Vålerenga' 'Atlético Madrid']
+
+# ... mhh how to manage that for user friendliness..
 
 # Afterwards: Logic Checks
-# TODO
+# Already a problem: handling special characters such as: Vålerenga, St. Pölten, Atlético Madrid (I think those are all..) won't match our dict keys as-is
+# either: normalize the incoming data before lookup, or accept the mismatch and check for Unknown warnings..
 
 # User Friendly Output
-# TODO
-
-############# I'll keep it frozen for now until the Proposal is delivered! 
-############# I'll keep it frozen for now until the Proposal is delivered! 
-############# I'll keep it frozen for now until the Proposal is delivered! 
+# Like.. how many players, how many clubs, any warnings
+# Then we save it to a csv. 

@@ -22,6 +22,13 @@
 
 ~ 2h50m
 
+
+**Data cleaning & ad-hoc pivots**
+
+| Date | Task | Time |
+|------|------|------|
+| 27.06 | Mismatch handling and worked on format.py | 20m | 
+
 **Max Total: xh / ~25h**
 
 ---
