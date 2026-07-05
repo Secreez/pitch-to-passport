@@ -27,7 +27,8 @@
 
 | Date | Task | Time |
 |------|------|------|
-| 27.06 | Mismatch handling and worked on format.py | 20m | 
+| 27.06 | Mismatch handling and worked on format.py | 20m |
+| 05.07 | Made last cleaining tasks and made the script mre user friendly to read in format.py to be worked upon + communication with Emily | 1h |
 
 **Max Total: xh / ~25h**
 
