@@ -1,6 +1,8 @@
 # Ignore all data files
 data/*.csv
 data/*.txt
+docs/reflection/
 
 # Except the folder structure itself (optional)
 !data/.gitkeep
+!docs/reflection/.gitkeep

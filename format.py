@@ -1,10 +1,14 @@
 ###
 #
 # Pitch to Passport - Women's Champions League Talent Map
-# Cleans raw FBref player stats into a usable CSV.
+# Cleans raw FBref player stats into a usable CSV (all 18 clubs, 401 players).
+#
+# NOTE: This script produces the base dataset only. The final enriched dataset
+# (12 knockout stage clubs, 275 players) was manually validated by Emily
+# and is documented in README.md
 #
 # Data source: https://fbref.com/en/comps/181/stats/Champions-League-Stats#all_stats_standard
-# Usage: python format.py (will likely be added into a new command)
+# Usage: python format.py
 #
 ###
 
@@ -105,4 +109,3 @@ print(f"------------------------------------------------")
 df.to_csv(OUTPUT_FILE, index=False, encoding="utf-8")
 print(f"Saved to {OUTPUT_FILE}")
 
-# Now, it is Emily's job to check the data manually and if its correct or not

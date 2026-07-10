@@ -14,15 +14,22 @@ We draw lines from each player's home country to their club location, therefore 
 
 ## Data
 
-Data is sourced from [FBref](https://fbref.com/en/comps/181/stats/Champions-League-Stats#all_stats_standard) (2025-26 UEFA Women's Champions League).
+Data is sourced from [FBref](https://fbref.com/en/comps/181/stats/Champions-League-Stats) 
+(2025-26 UEFA Women's Champions League, knockout stage clubs only).
 
 Due to FBref's TOS, raw data files are not included in this repository.
 
-**How to reproduce:**
-1. Go to the FBref link above
-2. Copy the Player Standard Stats table
-3. Save as `data/players.txt` (UTF-8 encoded)
-4. Run `python format.py` to generate `data/players.csv`
+**Two-step data pipeline:**
+
+1. **Base cleaning** (`format.py`): copies raw FBref stats into a clean CSV (401 players, 18 clubs)
+2. **Manual enrichment** (Emily): manually validated and enriched with `ShirtNumber`, `FormerClub`, 
+   and `Awards` columns, scoped to 12 knockout stage clubs (275 players)
+
+**To reproduce:**
+1. Go to the FBref link above, copy the Player Standard Stats table
+2. Save as `data/players.txt` (UTF-8 encoded)
+3. Run `python format.py` → generates `data/players.csv`
+4. Apply manual enrichment
 
 ## Installation
 

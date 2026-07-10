@@ -8,6 +8,8 @@
 |------|------|------|
 | 01.06 | Initiating repo and first project structure | 1h 30m | 
 | 03.06 | Checked project structure | 10m |
+| 10.07 | Build a skeleton for main.py and filled in a few things first. | 50m |
+
 
 **Proposal:**
 
@@ -29,6 +31,8 @@
 |------|------|------|
 | 27.06 | Mismatch handling and worked on format.py | 20m |
 | 05.07 | Made last cleaining tasks and made the script mre user friendly to read in format.py to be worked upon + communication with Emily | 1h |
+| 06.07 | Discussed data enrichment with Emily, reviewed enriched dataset, 
+documented two-step data pipeline | 25m |
 
 **Max Total: xh / ~25h**
 
