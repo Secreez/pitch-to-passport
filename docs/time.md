@@ -9,7 +9,9 @@
 | 01.06 | Initiating repo and first project structure | 1h 30m | 
 | 03.06 | Checked project structure | 10m |
 | 10.07 | Build a skeleton for main.py and filled in a few things first. | 50m |
+| 22.07 | Worked on case sensitivty as well as accent's in the do_player method, worked out great! Might get back to it if If I find better a better way but overall. don't touch if it works. | 1h 10m |
 
+~ 3h 40m
 
 **Proposal:**
 
@@ -34,7 +36,9 @@
 | 06.07 | Discussed data enrichment with Emily, reviewed enriched dataset, 
 documented two-step data pipeline | 25m |
 
-**Max Total: xh / ~25h**
+~ 1h 45m
+
+**Max Total: 8h 15m / ~25h**
 
 ---
 
@@ -49,4 +53,4 @@ documented two-step data pipeline | 25m |
 
 ---
 
-## Combined Total: ~3h / ~50h
+## Combined Total: ~ h / ~50h
