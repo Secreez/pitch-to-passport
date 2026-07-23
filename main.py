@@ -25,6 +25,7 @@ class PitchToPassport(cmd.Cmd):
 
         # normalized names once at startup for accent searches
         self.df["_NormalizedPlayer"] = self.df["Player"].fillna("").apply(normalize_text)
+        self.df["_NormalizedClub"] = self.df["ClubName"].fillna("").apply(normalize_text)
 
 # This is basically csv search with name
 # might optimize that one later on as it is a bit stretchy..
@@ -57,7 +58,8 @@ class PitchToPassport(cmd.Cmd):
             return
         
         # Display
-        print(f"\nFound {len(matches)} match for {query}:")
+        match_word = "match" if len(matches) == 1 else "matches"
+        print(f"\nFound {len(matches)} {match_word} for '{query}':")
         print("----------------------------------------------------------------------------------")
 
         for _, row in matches.iterrows():
@@ -71,9 +73,59 @@ class PitchToPassport(cmd.Cmd):
 # do_team
 # that one is basically the same as do_player mechanical wise: filtering self.df by ClubName with agg: mean(), nunique() .sum ..
 # then print formatted overview basically. Should be .. faster then te do_player .. but will see heh! :D
-    def do_team(self, _):
-      pass
+    def do_team(self, line):
+        """Look up a team's statistics via: team <team_name>"""
+        # Input hadning -> same as do_player: empty check, normalzie, searhc Clubnames
+        query = line.strip()
 
+        if not query:
+            print("Please enter a team name to search. Such as: team Arsenal")
+            return
+        
+        clean_query = normalize_text(query)
+
+        matches = self.df[self.df["_NormalizedClub"].str.contains(clean_query, regex=False)]
+
+        if matches.empty:
+            print(f"No teams found matching '{query}'. Try a different spelling.")
+            return
+
+        # Fitler: self.df[self.df["ClubName"].str.containts(...)]
+        # Agg and print 
+        # len(squad) -> squad size
+        # squad["Age"].mean()
+        # squad["NationCode"].nunique()
+        # squad["Gls"].sum() -> goals
+        # squad["Ast"].sum() -> assists
+        # squad.loc[squad["Gls"].idxmax(), "Player"] -> top scorer
+        
+        # TODO CHECK FOR PROBLEMS IN THIS EDGE CASE!!!
+        club_name = matches["ClubName"].iloc[0] # iloc to extract full club and coutnry form the first row of matches 
+        club_country = matches["ClubCountry"].iloc[0]
+
+        # Metrics
+        squad_size = len(matches)
+        avg_age = matches["Age"].mean()
+        nations_count = matches["NationCode"].nunique()
+        total_goals = matches["Gls"].sum()
+        total_assists = matches["Ast"].sum()
+
+        # Top Scorer
+        top_scorer_row = matches.loc[matches["Gls"].idxmax()] # index at maximum -> returns label/index of the row where maximum is instead of just value itself via max()
+        top_scorer_name = top_scorer_row["Player"]
+        top_scorer_goals = top_scorer_row["Gls"]
+
+        # Desigining a clean console card..
+
+        # ===== ...
+        # club_name (club_country) - Squad Overview
+        # ===== ...
+        # - Squd Size:        squad_size players
+        # - Average Age:      avg_age years
+        # - Diviersity:       nations_count unique nationalities
+        # - Team Totals:      total_goals Goals | total_assists Assists
+        # - Top Scorer (MVP): top_scorer_name (top_scorer_goals goals)
+        # ===== ...
 
 # do_compare
     def do_compare(self, _):

@@ -10,8 +10,9 @@
 | 03.06 | Checked project structure | 10m |
 | 10.07 | Build a skeleton for main.py and filled in a few things first. | 50m |
 | 22.07 | Worked on case sensitivty as well as accent's in the do_player method, worked out great! Might get back to it if If I find better a better way but overall. don't touch if it works. | 1h 10m |
+| 23.07 | Worked on do_team method and thought of structure of how to output a nice card for it. Also really need to error check for any edge cases | 50m |
 
-~ 3h 40m
+~ 4h 30m
 
 **Proposal:**
 
@@ -38,7 +39,7 @@ documented two-step data pipeline | 25m |
 
 ~ 1h 45m
 
-**Max Total: 8h 15m / ~25h**
+**Max Total: xh xm / ~25h**
 
 ---
 
