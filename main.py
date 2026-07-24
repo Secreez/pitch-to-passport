@@ -60,15 +60,13 @@ class PitchToPassport(cmd.Cmd):
         # Display
         match_word = "match" if len(matches) == 1 else "matches"
         print(f"\nFound {len(matches)} {match_word} for '{query}':")
-        print("----------------------------------------------------------------------------------")
-
+        print(f"{"=" * 90}")
         for _, row in matches.iterrows():
             print(
-                f"- {row['Player']} | Position: {row['Pos']} | "
-                f"Club: {row['ClubName']} ({row['ClubCountry']}) | Shirt #{row['ShirtNumber']}"
+                f"- {row['Player']:<20} | #{row['ShirtNumber']:<3} | "
+                f"Pos: {row['Pos']:<6} | Club: {row['ClubName']} ({row['ClubCountry']})"
                 )
-
-        print("----------------------------------------------------------------------------------")
+        print(f"{"=" * 90}\n")
 
 # do_team
 # that one is basically the same as do_player mechanical wise: filtering self.df by ClubName with agg: mean(), nunique() .sum ..
@@ -99,7 +97,8 @@ class PitchToPassport(cmd.Cmd):
         # squad["Ast"].sum() -> assists
         # squad.loc[squad["Gls"].idxmax(), "Player"] -> top scorer
         
-        # TODO CHECK FOR PROBLEMS IN THIS EDGE CASE!!!
+        # TODO CHECK FOR PROBLEMS IN THIS EDGE CASE!!! 
+        # NO SURFACE ERRORS YET.
         club_name = matches["ClubName"].iloc[0] # iloc to extract full club and coutnry form the first row of matches 
         club_country = matches["ClubCountry"].iloc[0]
 
@@ -127,13 +126,26 @@ class PitchToPassport(cmd.Cmd):
         # - Top Scorer (MVP): top_scorer_name (top_scorer_goals goals)
         # ===== ...
 
+        print(f"\n{'=' * 50}")
+        print(f"  {club_name} ({club_country}) - Squad Overview")
+        print(f"{'=' * 50}")
+        print(f" Squad Size:       {squad_size} players")
+        print(f" Average Age:      {avg_age:.1f} years")
+        print(f" Diversity:        {nations_count} unique nationalities")
+        print(f" Team Totals:      {total_goals} Goals | {total_assists} Assists")
+        print(f" Top Scorer (MVP): {top_scorer_name} ({top_scorer_goals} goals)")
+        print(f"{'=' * 50}\n")
+
 # do_compare
     def do_compare(self, _):
+        # TODO
+        # WORK ON do_compare NEXT!
+
       pass
 
 
 # do_map
-# Atleast cuz need folium struc first from Emily 
+# TODO LATER: Atleast cuz need folium struc first from Emily 
     def do_map(self):
       pass
 

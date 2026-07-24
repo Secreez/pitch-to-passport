@@ -11,6 +11,7 @@
 | 10.07 | Build a skeleton for main.py and filled in a few things first. | 50m |
 | 22.07 | Worked on case sensitivty as well as accent's in the do_player method, worked out great! Might get back to it if If I find better a better way but overall. don't touch if it works. | 1h 10m |
 | 23.07 | Worked on do_team method and thought of structure of how to output a nice card for it. Also really need to error check for any edge cases | 50m |
+| 24.07 | Finished do_team method and made the outputs prettier :> | 30m |
 
 ~ 4h 30m
 
