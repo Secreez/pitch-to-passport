@@ -27,6 +27,21 @@ class PitchToPassport(cmd.Cmd):
         self.df["_NormalizedPlayer"] = self.df["Player"].fillna("").apply(normalize_text)
         self.df["_NormalizedClub"] = self.df["ClubName"].fillna("").apply(normalize_text)
 
+
+    def _find_club(self, query): # helper func to not dublicate stuff along the way
+        clean_query = normalize_text(query)
+        matches = self.df[self.df["_NormalizedClub"].str.contains(clean_query, regex=False)]
+        if matches.empty:
+            return None
+        return matches
+    
+    def _find_player(self, query):
+        clean_query = normalize_text(query)
+        matches = self.df[self.df["_NormalizedPlayer"].str.contains(clean_query, regex=False)]
+        if matches.empty:
+            return None
+        return matches
+
 # This is basically csv search with name
 # might optimize that one later on as it is a bit stretchy..
 # But so far super happy as player xenia works now to find -> Xènia Pérez for example.
@@ -80,11 +95,8 @@ class PitchToPassport(cmd.Cmd):
             print("Please enter a team name to search. Such as: team Arsenal")
             return
         
-        clean_query = normalize_text(query)
-
-        matches = self.df[self.df["_NormalizedClub"].str.contains(clean_query, regex=False)]
-
-        if matches.empty:
+        matches = self._find_club(query)
+        if matches is None:
             print(f"No teams found matching '{query}'. Try a different spelling.")
             return
 
@@ -97,7 +109,10 @@ class PitchToPassport(cmd.Cmd):
         # squad["Ast"].sum() -> assists
         # squad.loc[squad["Gls"].idxmax(), "Player"] -> top scorer
         
-        # TODO CHECK FOR PROBLEMS IN THIS EDGE CASE!!! 
+        # TODO CHECK FOR PROBLEMS IN THIS EDGE CASE!!!
+        # TODO: SIMPLIFY LIKE do_compare VIA HELPER FUNCTIONS ABOVE AND RECYCLE!
+
+
         # NO SURFACE ERRORS YET.
         club_name = matches["ClubName"].iloc[0] # iloc to extract full club and coutnry form the first row of matches 
         club_country = matches["ClubCountry"].iloc[0]
@@ -137,11 +152,39 @@ class PitchToPassport(cmd.Cmd):
         print(f"{'=' * 50}\n")
 
 # do_compare
-    def do_compare(self, _):
+    def do_compare(self, line):
         # TODO
         # WORK ON do_compare NEXT!
+        # Gonna be a bit tricker: we want a if/else struc:
+        # trick is detecting whether the user typed two player onames or two team names
+        # basically:
+        # compare Arsenal Barcelona -> both found in ClubName -> team compare
+        # compare Russo Harder -> both found in Player -> player compare
+        # compare Arsenal Russo -> one of each -> error, tell the user
+        # Also.. logically, we need a seperator.. else its Real Madrid vs Bayern Munich or Real vs. Madrid Bayern Munich
+        # Therefore.. suggest: line.split(" vs ")
 
-      pass
+        # Attributes for the two:
+
+        # Player: Club, Position, Nationality, Age
+        # Goals, Assists, G+A, Minutes, Matches played
+
+        # Team: Squad size, Avg age, Nationalities, 
+        # Total goals, Total asissts, Top scorer, Most assists
+        parts = line.split(" vs ")
+
+        query1 = parts[0].strip()
+        query2 = parts[1].strip()
+
+        # TODO .... helpers to detect what the user typed? Prob.. and then catch them via if/else.. or..
+
+        club1 = self._find_club(query1)
+        club2 = self._find_club(query2)
+        player1 = self._find_player(query1)
+        player2 = self._find_player(query2)
+
+
+
 
 
 # do_map
