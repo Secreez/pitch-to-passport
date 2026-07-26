@@ -153,6 +153,8 @@ class PitchToPassport(cmd.Cmd):
 
 # do_compare
     def do_compare(self, line):
+        """Compare either player1 vs. player2 or team1 vs. team2 via: compare <x1> vs <x2>"""
+
         # TODO
         # WORK ON do_compare NEXT!
         # Gonna be a bit tricker: we want a if/else struc:
@@ -171,17 +173,48 @@ class PitchToPassport(cmd.Cmd):
 
         # Team: Squad size, Avg age, Nationalities, 
         # Total goals, Total asissts, Top scorer, Most assists
+        
+        if not line.strip():
+            print("Please enter two names / teams. Example: compare Arsenal vs Barcelona")
+            return
+
         parts = line.split(" vs ")
+
+        if len(parts) != 2:
+            # Else IndexError -> as only has oen element and parts[1] crashes.
+            print("Please use 'vs' to separate. Example: compare Arsenal vs Barcelona")
+            return
 
         query1 = parts[0].strip()
         query2 = parts[1].strip()
-
-        # TODO .... helpers to detect what the user typed? Prob.. and then catch them via if/else.. or..
 
         club1 = self._find_club(query1)
         club2 = self._find_club(query2)
         player1 = self._find_player(query1)
         player2 = self._find_player(query2)
+
+        if club1 is not None and club2 is not None:
+            # TODO CONSTRUCT LOGIC 
+            print(f"{club1} vs. {club2}")
+
+        elif player1 is not None and player2 is not None:
+            # TODO: If: Alexia -> Alexia Fernandez and Putellas vs. Paralluelo 
+            # Likely needs a if len(player1) > 1 and then a pritn with be more specific after a loop...
+            if len(player1) > 1:
+                print(f"Multiple players found for '{query1}'. Be more specific:")
+                for _, row in player1.iterrows():
+                    print(f"  - {row['Player']} ({row['ClubName']})")
+                return
+            
+            # now .. if len(player2) > 1: same stuff then it should be safe to compare singe players..
+            #  TODO CONSTRUCT LOGIC 
+
+        else:
+            print(f"Could not match '{query1}' and '{query2}' to the same type.")
+            print("Make sure both are clubs or both are players. Example: compare Arsenal vs Barcelona")
+
+
+
 
 
 
