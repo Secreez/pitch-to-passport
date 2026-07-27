@@ -42,6 +42,29 @@ class PitchToPassport(cmd.Cmd):
             return None
         return matches
 
+    def _team_card(self, matches):
+        # helper function as I am to lazy to rewrite
+        club_name = matches["ClubName"].iloc[0]
+        club_country = matches["ClubCountry"].iloc[0]
+        squad_size = len(matches)
+        avg_age = matches["Age"].mean()
+        nations_count = matches["NationCode"].nunique()
+        total_goals = matches["Gls"].sum()
+        total_assists = matches["Ast"].sum()
+        top_scorer_row = matches.loc[matches["Gls"].idxmax()]
+        top_scorer_name = top_scorer_row["Player"]
+        top_scorer_goals = top_scorer_row["Gls"]
+
+        print(f"\n{'=' * 50}")
+        print(f"  {club_name} ({club_country}) - Squad Overview")
+        print(f"{'=' * 50}")
+        print(f" Squad Size:       {squad_size} players")
+        print(f" Average Age:      {avg_age:.1f} years")
+        print(f" Diversity:        {nations_count} unique nationalities")
+        print(f" Team Totals:      {total_goals} Goals | {total_assists} Assists")
+        print(f" Top Scorer (MVP): {top_scorer_name} ({top_scorer_goals} goals)")
+        print(f"{'=' * 50}\n")
+
 # This is basically csv search with name
 # might optimize that one later on as it is a bit stretchy..
 # But so far super happy as player xenia works now to find -> Xènia Pérez for example.
@@ -88,68 +111,19 @@ class PitchToPassport(cmd.Cmd):
 # then print formatted overview basically. Should be .. faster then te do_player .. but will see heh! :D
     def do_team(self, line):
         """Look up a team's statistics via: team <team_name>"""
-        # Input hadning -> same as do_player: empty check, normalzie, searhc Clubnames
         query = line.strip()
 
         if not query:
-            print("Please enter a team name to search. Such as: team Arsenal")
+            print("Please enter a team name. Such as: team Arsenal")
             return
-        
+
         matches = self._find_club(query)
         if matches is None:
             print(f"No teams found matching '{query}'. Try a different spelling.")
             return
 
-        # Fitler: self.df[self.df["ClubName"].str.containts(...)]
-        # Agg and print 
-        # len(squad) -> squad size
-        # squad["Age"].mean()
-        # squad["NationCode"].nunique()
-        # squad["Gls"].sum() -> goals
-        # squad["Ast"].sum() -> assists
-        # squad.loc[squad["Gls"].idxmax(), "Player"] -> top scorer
-        
-        # TODO CHECK FOR PROBLEMS IN THIS EDGE CASE!!!
-        # TODO: SIMPLIFY LIKE do_compare VIA HELPER FUNCTIONS ABOVE AND RECYCLE!
-
-
-        # NO SURFACE ERRORS YET.
-        club_name = matches["ClubName"].iloc[0] # iloc to extract full club and coutnry form the first row of matches 
-        club_country = matches["ClubCountry"].iloc[0]
-
-        # Metrics
-        squad_size = len(matches)
-        avg_age = matches["Age"].mean()
-        nations_count = matches["NationCode"].nunique()
-        total_goals = matches["Gls"].sum()
-        total_assists = matches["Ast"].sum()
-
-        # Top Scorer
-        top_scorer_row = matches.loc[matches["Gls"].idxmax()] # index at maximum -> returns label/index of the row where maximum is instead of just value itself via max()
-        top_scorer_name = top_scorer_row["Player"]
-        top_scorer_goals = top_scorer_row["Gls"]
-
-        # Desigining a clean console card..
-
-        # ===== ...
-        # club_name (club_country) - Squad Overview
-        # ===== ...
-        # - Squd Size:        squad_size players
-        # - Average Age:      avg_age years
-        # - Diviersity:       nations_count unique nationalities
-        # - Team Totals:      total_goals Goals | total_assists Assists
-        # - Top Scorer (MVP): top_scorer_name (top_scorer_goals goals)
-        # ===== ...
-
-        print(f"\n{'=' * 50}")
-        print(f"  {club_name} ({club_country}) - Squad Overview")
-        print(f"{'=' * 50}")
-        print(f" Squad Size:       {squad_size} players")
-        print(f" Average Age:      {avg_age:.1f} years")
-        print(f" Diversity:        {nations_count} unique nationalities")
-        print(f" Team Totals:      {total_goals} Goals | {total_assists} Assists")
-        print(f" Top Scorer (MVP): {top_scorer_name} ({top_scorer_goals} goals)")
-        print(f"{'=' * 50}\n")
+        # call helper function
+        self._team_card(matches)
 
 # do_compare
     def do_compare(self, line):
@@ -194,20 +168,36 @@ class PitchToPassport(cmd.Cmd):
         player2 = self._find_player(query2)
 
         if club1 is not None and club2 is not None:
-            # TODO CONSTRUCT LOGIC 
-            print(f"{club1} vs. {club2}")
+            if club1["ClubName"].nunique() > 1: # if we use len() we whould get 22 Arsenal prints -> because all 22 Players therefore nunique
+                print(f"Multiple clubs found for '{query1}'. Be more specific:")
+                for _, row in club1.iterrows():
+                    print(f"  - {row['ClubName']} ({row['ClubCountry']})")
+                return
+
+            if club2["ClubName"].nunique() > 1:
+                print(f"Multiple clubs found for '{query2}'. Be more specific:")
+                for _, row in club2.iterrows():
+                    print(f"  - {row['ClubName']} ({row['ClubCountry']})")
+                return
+
+            self._team_card(club1)
+            print(f"\n{'-' * 22}  VS  {'-' * 22}\n")
+            self._team_card(club2)
 
         elif player1 is not None and player2 is not None:
-            # TODO: If: Alexia -> Alexia Fernandez and Putellas vs. Paralluelo 
-            # Likely needs a if len(player1) > 1 and then a pritn with be more specific after a loop...
             if len(player1) > 1:
                 print(f"Multiple players found for '{query1}'. Be more specific:")
                 for _, row in player1.iterrows():
                     print(f"  - {row['Player']} ({row['ClubName']})")
                 return
+
+            if len(player2) > 1:
+                print(f"Multiple players found for '{query2}'. Be more specific:")
+                for _, row in player2.iterrows():
+                    print(f"  - {row['Player']} ({row['ClubName']})")
+                return
             
-            # now .. if len(player2) > 1: same stuff then it should be safe to compare singe players..
-            #  TODO CONSTRUCT LOGIC 
+            # TODO: BUILD _player_card helper function
 
         else:
             print(f"Could not match '{query1}' and '{query2}' to the same type.")

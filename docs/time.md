@@ -14,6 +14,7 @@
 | 24.07 | Finished do_team method and made the outputs prettier :> | 30m |
 | 25.07 | Made Helper Functions to not repeat myself and started do_compare stuff is waaaay more complex then the other two atleast for now cuz edge case handling. | 30m |
 | 26.07 | compare: Started with player1 vs player2 logic comparison and solved an issue if two players found with same name. | 30m |
+| 27.07 | worked on helper functions to not repeat myself and build club logic for do_compare | 30m | 
 
 ~ xh xm
 
