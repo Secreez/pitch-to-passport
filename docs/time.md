@@ -15,8 +15,9 @@
 | 25.07 | Made Helper Functions to not repeat myself and started do_compare stuff is waaaay more complex then the other two atleast for now cuz edge case handling. | 30m |
 | 26.07 | compare: Started with player1 vs player2 logic comparison and solved an issue if two players found with same name. | 30m |
 | 27.07 | worked on helper functions to not repeat myself and build club logic for do_compare | 30m | 
+| 29.07 | Nice.. finished do_compare and fixed helper cards, my work is based on the methods so far what i can do alone done, need to contact Emily. In the meantime can focus on Documentation. | 1h 10m |
 
-~ xh xm
+~ 7h 15m
 
 **Proposal:**
 

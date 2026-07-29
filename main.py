@@ -64,43 +64,43 @@ class PitchToPassport(cmd.Cmd):
         print(f" Team Totals:      {total_goals} Goals | {total_assists} Assists")
         print(f" Top Scorer (MVP): {top_scorer_name} ({top_scorer_goals} goals)")
         print(f"{'=' * 50}\n")
+    
+    def _player_card(self, row):
+        print(f"\n{'=' * 50}")
+        print(f"  {row['Player']} - Player Profile")
+        print(f"{'=' * 50}")
+        print(f" Club:      {row['ClubName']} ({row['ClubCountry']})")
+        print(f" Position:  {row['Pos']}")
+        print(f" Shirt:     #{row['ShirtNumber']}")
+        print(f" Age:       {row['Age']}")
+        print(f" Goals:     {row['Gls']}")
+        print(f" Assists:   {row['Ast']}")
+        print(f" Minutes:   {row['Min']}")
+        print(f"{'=' * 50}\n")
 
 # This is basically csv search with name
 # might optimize that one later on as it is a bit stretchy..
 # But so far super happy as player xenia works now to find -> Xènia Pérez for example.
     def do_player(self, line):
-        # shall be:
-        # case insensitive 
-        # Chck if the input a in the player oclumn not just exact
-        # if multiple results -> show all mathces so the user can be more specific 
-        # If zero results -> helpful not found message 
         """Look up a player via: player <name>"""
 
-        # Clean up user input
-        # basically: empty handling so prevents erros fi the user just types player with no argument
         query = line.strip()
 
         if not query:
             print("Please enter a player name to search. Such as: player Mead")
             return
 
-        clean_query = normalize_text(query)
-
-        # Now Case-insensitive search using .str.contains()
-        # regex=False prevents crashes from symbols such as ? , etc.
-        matches = self.df[self.df["_NormalizedPlayer"].str.contains(clean_query, regex=False)]
+        matches = self._find_player(query)
         
-        # Handling zero results
-        if matches.empty:
+        if matches is None:
             print(f"No players found matching {query}. Try a different spelling or single name")
             return
         
-        # Display
         match_word = "match" if len(matches) == 1 else "matches"
         print(f"\nFound {len(matches)} {match_word} for '{query}':")
         print(f"{"=" * 90}")
         for _, row in matches.iterrows():
-            print(
+            print( # increment as needed. but should be sufficient really.
                 f"- {row['Player']:<20} | #{row['ShirtNumber']:<3} | "
                 f"Pos: {row['Pos']:<6} | Club: {row['ClubName']} ({row['ClubCountry']})"
                 )
@@ -123,30 +123,23 @@ class PitchToPassport(cmd.Cmd):
             return
 
         # call helper function
+        matches = self._find_club(query)
+        if matches is None:
+            print(f"No teams found matching '{query}'. Try a different spelling.")
+            return
+
+        if matches["ClubName"].nunique() > 1:
+            print(f"Multiple teams found for '{query}'. Be more specific:")
+            for club in matches["ClubName"].unique():
+                print(f"  - {club}")
+            return
+
         self._team_card(matches)
+                
 
 # do_compare
     def do_compare(self, line):
         """Compare either player1 vs. player2 or team1 vs. team2 via: compare <x1> vs <x2>"""
-
-        # TODO
-        # WORK ON do_compare NEXT!
-        # Gonna be a bit tricker: we want a if/else struc:
-        # trick is detecting whether the user typed two player onames or two team names
-        # basically:
-        # compare Arsenal Barcelona -> both found in ClubName -> team compare
-        # compare Russo Harder -> both found in Player -> player compare
-        # compare Arsenal Russo -> one of each -> error, tell the user
-        # Also.. logically, we need a seperator.. else its Real Madrid vs Bayern Munich or Real vs. Madrid Bayern Munich
-        # Therefore.. suggest: line.split(" vs ")
-
-        # Attributes for the two:
-
-        # Player: Club, Position, Nationality, Age
-        # Goals, Assists, G+A, Minutes, Matches played
-
-        # Team: Squad size, Avg age, Nationalities, 
-        # Total goals, Total asissts, Top scorer, Most assists
         
         if not line.strip():
             print("Please enter two names / teams. Example: compare Arsenal vs Barcelona")
@@ -197,7 +190,9 @@ class PitchToPassport(cmd.Cmd):
                     print(f"  - {row['Player']} ({row['ClubName']})")
                 return
             
-            # TODO: BUILD _player_card helper function
+            self._player_card(player1.iloc[0])
+            print(f"\n{'-' * 22}  VS  {'-' * 22}\n")
+            self._player_card(player2.iloc[0])
 
         else:
             print(f"Could not match '{query1}' and '{query2}' to the same type.")
@@ -212,13 +207,21 @@ class PitchToPassport(cmd.Cmd):
 
 # do_map
 # TODO LATER: Atleast cuz need folium struc first from Emily 
-    def do_map(self):
+#• map <team>: Map linking each player’s home country to the club, with stat popups
+#• map all: Global talent migration map across all 18 UWCL clu
+    def do_map(self, line):
       pass
 
 
+# TODO: OPTIONAL
+
+#• map <player>: single-line map for one player’s journey. Low visual value vs. team/global maps, easy to cut.
+#• CL trophies & market value in compare <team1> <team2>: needs extra data sourcing (ESPN/
+# Transfermarkt) and merging; added only if time allows
+
 # do_exit
     def do_exit(self, _):
-      "Exit the program"
+      """Exit the program"""
       return True
 
 
