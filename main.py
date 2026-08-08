@@ -7,6 +7,9 @@ import unicodedata
 
 # External library
 import pandas as pd
+import folium
+from collections import Counter
+#import webbrowser
 
 def normalize_text(text):
     """Converts 'Bøe' or 'Xènia' to 'boe' or 'xenia' for easy matching."""
@@ -182,19 +185,154 @@ class PitchToPassport(cmd.Cmd):
             print(f"Could not match '{query1}' and '{query2}' to the same type.")
             print("Make sure both are clubs or both are players. Example: compare Arsenal vs Barcelona")
 
-
-
-
-
-
-
-
 # do_map
-# TODO LATER: Atleast cuz need folium struc first from Emily 
-#• map <team>: Map linking each player’s home country to the club, with stat popups
-#• map all: Global talent migration map across all 18 UWCL clu
     def do_map(self, line):
-      pass
+      '''Either link a team's players' home countries to the club's stadium 
+      or show the global talent migration across all clubs'''
+
+      #AI-generated dictionary
+      country_capital_coordinates = {
+        "ENG": [51.5074, -0.1278],    # London
+        "GER": [52.5200, 13.4050],    # Berlin
+        "AUS": [-35.2809, 149.1300],  # Canberra
+        "NED": [52.3676, 4.9041],     # Amsterdam
+        "USA": [38.9072, -77.0369],   # Washington, D.C.
+        "NOR": [59.9139, 10.7522],    # Oslo
+        "IRL": [53.3498, -6.2603],    # Dublin
+        "SCO": [55.9533, -3.1883],    # Edinburgh
+        "ESP": [40.4168, -3.7038],    # Madrid
+        "CAN": [45.4215, -75.6972],   # Ottawa
+        "SWE": [59.3293, 18.0686],    # Stockholm
+        "BRA": [-15.7939, -47.8828],  # Brasília
+        "VEN": [10.4806, -66.9036],   # Caracas
+        "DEN": [55.6761, 12.5683],    # Kopenhagen
+        "POR": [38.7223, -9.1393],    # Lissabon
+        "POL": [52.2297, 21.0122],    # Warschau
+        "SUI": [46.9480, 7.4474],     # Bern
+        "CIV": [5.3599, -4.0083],     # Abidjan
+        "ITA": [41.9028, 12.4964],    # Rom
+        "SRB": [44.7866, 20.4489],    # Belgrad
+        "AUT": [48.2082, 16.3738],    # Wien
+        "ISL": [64.1466, -21.9426],   # Reykjavík
+        "JPN": [35.6762, 139.6503],   # Tokio
+        "FRA": [48.8566, 2.3522],     # Paris
+        "MWI": [-13.9626, 33.7741],   # Lilongwe
+        "HAI": [18.5944, -72.3074],   # Port-au-Prince
+        "CHI": [-33.4489, -70.6693],  # Santiago (Chile)
+        "WAL": [51.4816, -3.1791],    # Cardiff
+        "BEL": [50.8503, 4.3517],     # Brüssel
+        "HUN": [47.4979, 19.0402],    # Budapest
+        "GRE": [37.9838, 23.7275],    # Athen
+        "SVN": [46.0569, 14.5058],    # Ljubljana
+        "CRC": [9.9281, -84.0907],    # San José
+        "MLI": [12.6392, -8.0029],    # Bamako
+        "COL": [4.7110, -74.0721],    # Bogotá
+        }
+
+      #AI-generated dictionary
+      country_colors = {
+              "ENG": "red",
+              "GER": "black",
+              "AUS": "darkblue",
+              "NED": "orange",
+              "USA": "blue",
+              "NOR": "darkred",
+              "IRL": "green",
+              "SCO": "cadetblue",
+              "ESP": "darkred",
+              "CAN": "red",
+              "SWE": "blue",
+              "BRA": "green",
+              "VEN": "orange",
+              "DEN": "red",
+              "POR": "darkgreen",
+              "POL": "red",
+              "SUI": "red",
+              "CIV": "orange",
+              "ITA": "green",
+              "SRB": "darkred",
+              "AUT": "red",
+              "ISL": "blue",
+              "JPN": "red",
+              "FRA": "blue",
+              "MWI": "green",
+              "HAI": "blue",
+              "CHI": "red",
+              "WAL": "green",
+              "BEL": "black",
+              "HUN": "green",
+              "GRE": "blue",
+              "SVN": "cadetblue",
+              "CRC": "red",
+              "MLI": "green",
+              "COL": "yellow"
+      }
+
+      query = line.strip()
+
+      if not query:
+        print("Please enter a team name, such as: map Barcelona, or map all")
+
+      m = folium.Map(location=(54.5260, 15.2551), zoom_start=4, tiles="CartoDB.Voyager")
+
+      # map all
+      if query.casefold() == "all":
+
+        for club_name, club_df in df.groupby("ClubName"):
+            stadium_coordinates = [float(club_df["ClubLat"].iloc[0]), float(club_df["ClubLon"].iloc[0])]
+
+            folium.Marker(
+                location=stadium_coordinates,
+                tooltip=club_name,
+                icon=folium.Icon(icon="star", color="blue")
+                ).add_to(m)
+
+            country_counts = Counter(club_df["NationCode"])
+
+            for code, count in country_counts.items():
+                home_coordinates = country_capital_coordinates[code]
+                color = country_colors[code]
+
+                folium.PolyLine(
+                    locations=[home_coordinates, stadium_coordinates], color=color, weight=count).add_to(m)
+                    
+        m.save('map.html')
+
+      # map <team>
+      else:
+        matches = self._find_club(query)
+
+        if matches is None:
+            print(f"No teams found matching '{query}'. Try a different spelling.")
+            return
+
+        if matches["ClubName"].nunique() > 1:
+            print(f"Multiple teams found for '{query}'. Be more specific:")
+            for club in matches["ClubName"].unique():
+                print(f"  - {club}")
+            return
+
+        stadium_coordinates = [float(matches["ClubLat"].iloc[0]), float(matches["ClubLon"].iloc[0])]
+
+        nation_codes = matches["NationCode"]
+
+        folium.Marker(
+            location=stadium_coordinates,
+            icon=folium.Icon(color="blue", icon="star", prefix="fa"),
+            ).add_to(m)
+
+        country_counts = Counter(nation_codes)
+
+        for code, count in country_counts.items():
+            coord = country_capital_coordinates[code]
+            color = country_colors[code]
+            folium.PolyLine(
+                locations=[coord, stadium_coordinates], 
+                weight=count, 
+                color=color
+            ).add_to(m)
+            
+        m.save('map.html')
 
 
 # TODO: OPTIONAL
