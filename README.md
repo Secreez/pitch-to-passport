@@ -7,7 +7,7 @@ Built for the course "Basics of Software Development Practice" — Final Project
 
 ## Concept
 
-401 players. 12 clubs. 30+ nations. One map.
+275 players. 12 clubs. 30+ nations. One map.
 
 Pitch to Passport bridges raw sports statistics and spatial analytics, turning tabular football data into a macro-level visualization of talent migration trends in the 2025–26 UEFA Women's Champions League. Instead of just numbers on a spreadsheet, the tool lets you answer broader questions:
 

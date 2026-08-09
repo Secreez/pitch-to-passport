@@ -28,7 +28,10 @@ class PitchToPassport(cmd.Cmd):
         self.df["_NormalizedPlayer"] = self.df["Player"].fillna("").apply(normalize_text)
         self.df["_NormalizedClub"] = self.df["ClubName"].fillna("").apply(normalize_text)
 
-    # helper func to not dublicate stuff along the way
+    # Max AI Assistance Note (Claude): Consulted on integrating the normalize_text 
+    # function into pandas string matching (.apply and str.contains with regex=False) 
+    # and structuring helper methods to avoid code duplication. 
+    # normalize_text function, CLI command flow, wiring up the commands, and output formatting implemented by Max.
     def _find_club(self, query):
         clean_query = normalize_text(query)
         matches = self.df[self.df["_NormalizedClub"].str.contains(clean_query, regex=False)]
@@ -58,24 +61,24 @@ class PitchToPassport(cmd.Cmd):
         print(f"\n{'=' * 50}")
         print(f"  {club_name} ({club_country}) - Squad Overview")
         print(f"{'=' * 50}")
-        print(f" Squad Size:       {squad_size} players")
-        print(f" Average Age:      {avg_age:.1f} years")
-        print(f" Diversity:        {nations_count} unique nationalities")
-        print(f" Team Totals:      {total_goals} Goals | {total_assists} Assists")
-        print(f" Top Scorer (MVP): {top_scorer_name} ({top_scorer_goals} goals)")
+        print(f"Squad Size:       {squad_size} players")
+        print(f"Average Age:      {avg_age:.1f} years")
+        print(f"Diversity:        {nations_count} unique nationalities")
+        print(f"Team Totals:      {total_goals} Goals | {total_assists} Assists")
+        print(f"Top Scorer (MVP): {top_scorer_name} ({top_scorer_goals} goals)")
         print(f"{'=' * 50}\n")
 
     def _player_card(self, row):
         print(f"\n{'=' * 50}")
         print(f"  {row['Player']} - Player Profile")
         print(f"{'=' * 50}")
-        print(f" Club:      {row['ClubName']} ({row['ClubCountry']})")
-        print(f" Position:  {row['Pos']}")
-        print(f" Shirt:     #{row['ShirtNumber']}")
-        print(f" Age:       {row['Age']}")
-        print(f" Goals:     {row['Gls']}")
-        print(f" Assists:   {row['Ast']}")
-        print(f" Minutes:   {row['Min']}")
+        print(f"Club:      {row['ClubName']} ({row['ClubCountry']})")
+        print(f"Position:  {row['Pos']}")
+        print(f"Shirt:     #{row['ShirtNumber']}")
+        print(f"Age:       {row['Age']}")
+        print(f"Goals:     {row['Gls']}")
+        print(f"Assists:   {row['Ast']}")
+        print(f"Minutes:   {row['Min']}")
         print(f"{'=' * 50}\n")
 
     def do_player(self, line):
@@ -190,7 +193,7 @@ class PitchToPassport(cmd.Cmd):
       '''Either link a team's players' home countries to the club's stadium 
       or show the global talent migration across all clubs'''
 
-      #AI-generated dictionary
+      # Emily AI Flag: AI-generated dictionary
       country_capital_coordinates = {
         "ENG": [51.5074, -0.1278],    # London
         "GER": [52.5200, 13.4050],    # Berlin
@@ -229,7 +232,7 @@ class PitchToPassport(cmd.Cmd):
         "COL": [4.7110, -74.0721],    # Bogotá
         }
 
-      #AI-generated dictionary
+      # Emily AI Flag: AI-generated dictionary
       country_colors = {
               "ENG": "red",
               "GER": "black",
@@ -272,6 +275,7 @@ class PitchToPassport(cmd.Cmd):
 
       if not query:
         print("Please enter a team name, such as: map Barcelona, or map all")
+        return
 
       m = folium.Map(location=(54.5260, 15.2551), zoom_start=4, tiles="CartoDB.Voyager")
 

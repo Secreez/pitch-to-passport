@@ -8,7 +8,7 @@
 |------|------|------|
 | 01.06 | Initiating repo and first project structure | 1h 30m | 
 | 03.06 | Checked project structure | 10m |
-| 10.07 | Build a skeleton for main.py and filled in a few things first. | 50m |
+| 10.07 | Built a skeleton for main.py and filled in a few things first. | 50m |
 | 22.07 | Worked on case sensitivity as well as accents in the do_player method, worked out great! Might get back to it if I find a better way, but overall: don't touch if it works. | 1h 10m |
 | 23.07 | Worked on do_team method and thought of structure for how to output a nice card for it. Also really need to error check for any edge cases. | 50m |
 | 24.07 | Finished do_team method and made the outputs prettier :> | 30m |
@@ -17,10 +17,13 @@
 | 27.07 | Worked on helper functions to not repeat myself and built club logic for do_compare. | 30m | 
 | 29.07 | Nice... finished do_compare and fixed helper cards. My work is based on the methods so far; what I can do alone is done, need to contact Emily. In the meantime, can focus on documentation. | 1h 10m |
 | 31.07 | Chatted with Emily. She is working on the Folium application till next week, so cleaned comments, enhanced information in README, and did overall spellchecks. | 1h 15m |
+| 07.08 | Met up with Emily. Talked about her implementations, issues, and further work we need to do. | 1h |
+| 09.08 | Tried to understand further work from Emily and worked on spell checks and my own AI Note. But I won't change the generated dictionary or other things as it is AI-generated, which has been flagged properly by her. MVP wise, we are cooking. | 1h 30m | 
 
-~ 8h 55m
 
-### Proposal: 
+~ xh xm
+
+### Proposal and Reflection: 
 
 | Date | Task | Time |
 |------|------|------|
@@ -30,8 +33,9 @@
 | 06.06 | Further proposal work: Intermediate steps, feasibility and risks, etc. | 20m |
 | 08.06 | Further proposal work: Things I could do alone so far without Emily | 10m |
 | 13.06 | Final proposal work: Cleaned up things after discussion, prepped for proposal deliverable, and made it shorter for the 2-page max rule. | 1h 10m |
+| 09.08 | Reflection: Started writing the reflection and accumulated my notes that I wrote down while working on the project. | 45m | 
 
-~ 2h50m
+~ xhxm
 
 
 ### Data cleaning & ad-hoc pivots
