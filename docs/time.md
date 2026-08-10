@@ -18,10 +18,11 @@
 | 29.07 | Nice... finished do_compare and fixed helper cards. My work is based on the methods so far; what I can do alone is done, need to contact Emily. In the meantime, can focus on documentation. | 1h 10m |
 | 31.07 | Chatted with Emily. She is working on the Folium application till next week, so cleaned comments, enhanced information in README, and did overall spellchecks. | 1h 15m |
 | 07.08 | Met up with Emily. Talked about her implementations, issues, and further work we need to do. | 1h |
-| 09.08 | Tried to understand further work from Emily and worked on spell checks and my own AI Note. But I won't change the generated dictionary or other things as it is AI-generated, which has been flagged properly by her. MVP wise, we are cooking. | 1h 30m | 
+| 09.08 | Tried to understand further work from Emily and worked on spell checks and my own AI Note. But I won't change the generated dictionary or other things as it is AI-generated, which has been flagged properly by her. MVP wise, we are cooking. | 1h 30m |
+| 10.08 | Made last fixes and corrections, comment cleanup in main.py, format.py | 1h 15m |
 
 
-~ xh xm
+~ 12h 40m
 
 ### Proposal and Reflection: 
 
@@ -35,7 +36,7 @@
 | 13.06 | Final proposal work: Cleaned up things after discussion, prepped for proposal deliverable, and made it shorter for the 2-page max rule. | 1h 10m |
 | 09.08 | Reflection: Started writing the reflection and accumulated my notes that I wrote down while working on the project. | 45m | 
 
-~ xhxm
+~ 3h 35m
 
 
 ### Data cleaning & ad-hoc pivots
@@ -48,7 +49,7 @@
 
 ~ 1h 45m
 
-**Max Total: 13h 15m / ~25h**
+**Max Total: 18h 0m / ~25h**
 
 ---
 

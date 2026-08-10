@@ -1,5 +1,3 @@
-# CLI Struc
-
 # Standard library
 import argparse
 import cmd
@@ -72,13 +70,14 @@ class PitchToPassport(cmd.Cmd):
         print(f"\n{'=' * 50}")
         print(f"  {row['Player']} - Player Profile")
         print(f"{'=' * 50}")
-        print(f"Club:      {row['ClubName']} ({row['ClubCountry']})")
-        print(f"Position:  {row['Pos']}")
-        print(f"Shirt:     #{row['ShirtNumber']}")
-        print(f"Age:       {row['Age']}")
-        print(f"Goals:     {row['Gls']}")
-        print(f"Assists:   {row['Ast']}")
-        print(f"Minutes:   {row['Min']}")
+        print(f"Club:        {row['ClubName']} ({row['ClubCountry']})")
+        print(f"Nationality: {row['NationCode']}")
+        print(f"Position:    {row['Pos']}")
+        print(f"Shirt:      #{row['ShirtNumber']}")
+        print(f"Age:         {row['Age']}")
+        print(f"Goals:       {row['Gls']}")
+        print(f"Assists:     {row['Ast']}")
+        print(f"Minutes:     {row['Min']}")
         print(f"{'=' * 50}\n")
 
     def do_player(self, line):
@@ -105,7 +104,6 @@ class PitchToPassport(cmd.Cmd):
                 )
         print(f"{"=" * 90}\n")
 
-# do_team
     def do_team(self, line):
         """Look up a team's statistics via: team <team_name>"""
         query = line.strip()
@@ -128,7 +126,6 @@ class PitchToPassport(cmd.Cmd):
         self._team_card(matches)
 
 
-# do_compare
     def do_compare(self, line):
         """Compare either player1 vs. player2 or team1 vs. team2 via: compare <x1> vs <x2>"""
         if not line.strip():
@@ -188,7 +185,6 @@ class PitchToPassport(cmd.Cmd):
             print(f"Could not match '{query1}' and '{query2}' to the same type.")
             print("Make sure both are clubs or both are players. Example: compare Arsenal vs Barcelona")
 
-# do_map
     def do_map(self, line):
       '''Either link a team's players' home countries to the club's stadium 
       or show the global talent migration across all clubs'''
@@ -282,7 +278,7 @@ class PitchToPassport(cmd.Cmd):
       # map all
       if query.casefold() == "all":
 
-        for club_name, club_df in df.groupby("ClubName"):
+        for club_name, club_df in self.df.groupby("ClubName"):
             stadium_coordinates = [float(club_df["ClubLat"].iloc[0]), float(club_df["ClubLon"].iloc[0])]
 
             folium.Marker(
@@ -301,8 +297,8 @@ class PitchToPassport(cmd.Cmd):
                     locations=[home_coordinates, stadium_coordinates], color=color, weight=count).add_to(m)
                     
         m.save('map.html')
+        print("Map saved to map.html — open it in your browser!")
 
-      # map <team>
       else:
         matches = self._find_club(query)
 
@@ -337,16 +333,7 @@ class PitchToPassport(cmd.Cmd):
             ).add_to(m)
             
         m.save('map.html')
-
-
-# TODO: OPTIONAL
-#• map <player>: single-line map for one player’s journey. Low visual value vs. team/global maps, easy to cut.
-#• CL trophies & market value in compare <team1> <team2>: needs extra data sourcing (ESPN/
-# Transfermarkt) and merging; added only if time allows
-
-    def do_exit(self, _):
-      """Exit the program"""
-      return True
+        print("Map saved to map.html — open it in your browser!")
 
 
 if __name__ == "__main__":

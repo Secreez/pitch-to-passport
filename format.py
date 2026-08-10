@@ -5,7 +5,6 @@
 #
 # NOTE: This script produces the base dataset only. The final enriched dataset
 # (12 knockout stage clubs, 275 players) was manually validated by Emily
-# and is documented in README.md
 #
 # Data source: https://fbref.com/en/comps/181/stats/Champions-League-Stats#all_stats_standard
 # Usage: python format.py
@@ -27,20 +26,17 @@ if not os.path.exists(INPUT_FILE):
 print(f"Reading {INPUT_FILE}...")
 
 df = pd.read_csv(INPUT_FILE, sep="\t", encoding="utf-8")
-df.columns = df.columns.str.strip()  # strips column name whitespace ergo:"Player " -> "Player"
+df.columns = df.columns.str.strip()
 
-# Keep only real player rows (remove repeated FBref header rows where Rk is not a number)
 df = df[pd.to_numeric(df["Rk"], errors="coerce").notnull()]
 
-# Bulk cleanup: strip whitespace from all string columns
 obj_cols = df.select_dtypes(include="str").columns
 df[obj_cols] = df[obj_cols].apply(lambda col: col.str.strip())
 
-# Extract NationCode and ClubName from FBref's prefixed format such as:
-df["NationCode"] = df["Nation"].str.split().str[-1] # "ng NGA" -> "NGA"
-df["ClubName"] = df["Squad"].str.split(" ", n=1).str[-1] # "eng Arsenal" -> "Arsenal"
+df["NationCode"] = df["Nation"].str.split().str[-1]
+df["ClubName"] = df["Squad"].str.split(" ", n=1).str[-1]
 
-# Club coordinates verified via Google Maps
+# Manual club coordinates searched and verified via Google Maps
 CLUB_COORDS = {
     "Arsenal":          {"country": "England",     "lat": 51.5550, "lon": -0.1084},
     "Chelsea":          {"country": "England",     "lat": 51.4817, "lon": -0.1909},
@@ -63,6 +59,10 @@ CLUB_COORDS = {
 }
 
 def normalize(text):
+    # Max AI Assistance Note (Claude): Consulted on using 
+    # unicodedata.normalize("NFD", text) combined with category "Mn" 
+    # to efficiently strip accents and special characters for robust dictionary lookups.
+
     """Strips accents/special characters for dictionary lookup via the unicodedata library
     e.g. 'Vålerenga' -> 'Valerenga', 'St. Pölten' -> 'St. Polten'
     """
@@ -75,7 +75,6 @@ def get_club_field(club, field):
     """Looks up a club field from CLUB_COORDS, normalizing special characters first."""
     return CLUB_COORDS.get(normalize(club), {}).get(field)
 
-# Apply club lookup
 df["ClubCountry"] = df["ClubName"].apply(lambda x: get_club_field(x, "country") or "Unknown")
 df["ClubLat"] = df["ClubName"].apply(lambda x: get_club_field(x, "lat"))
 df["ClubLon"] = df["ClubName"].apply(lambda x: get_club_field(x, "lon"))
@@ -86,7 +85,6 @@ if "Matches" in df.columns:
 
 df = df.reset_index(drop=True)
 
-# Basic Logic Checks and a nice user friendly print afterwards:
 missing = df[df["ClubCountry"] == "Unknown"]["ClubName"].unique()
 nan_counts = df[["NationCode", "ClubName", "ClubLat", "ClubLon"]].isnull().sum()
 
@@ -105,7 +103,5 @@ else:
     print(f"NaN check: No missing values in key columns\n")
 print(f"------------------------------------------------")
 
-
 df.to_csv(OUTPUT_FILE, index=False, encoding="utf-8")
 print(f"Saved to {OUTPUT_FILE}")
-
