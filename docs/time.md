@@ -20,9 +20,9 @@
 | 07.08 | Met up with Emily. Talked about her implementations, issues, and further work we need to do. | 1h |
 | 09.08 | Tried to understand further work from Emily and worked on spell checks and my own AI Note. But I won't change the generated dictionary or other things as it is AI-generated, which has been flagged properly by her. MVP wise, we are cooking. | 1h 30m |
 | 10.08 | Made last fixes and corrections, comment cleanup in main.py, format.py | 1h 15m |
+| 12.08 | Fixed Emily's functions with bits of logic checks and remade the do_exit function. Ask Emily for her feedback, but overall we are done in my book. | 1h 20m | 
 
-
-~ 12h 40m
+~ 14h 00m
 
 ### Proposal and Reflection: 
 
@@ -34,7 +34,7 @@
 | 06.06 | Further proposal work: Intermediate steps, feasibility and risks, etc. | 20m |
 | 08.06 | Further proposal work: Things I could do alone so far without Emily | 10m |
 | 13.06 | Final proposal work: Cleaned up things after discussion, prepped for proposal deliverable, and made it shorter for the 2-page max rule. | 1h 10m |
-| 09.08 | Reflection: Started writing the reflection and accumulated my notes that I wrote down while working on the project. | 45m | 
+| 09.08 | Reflection: Started writing the reflection and accumulated my notes that I wrote down while working on the project. | 45m |
 
 ~ 3h 35m
 
@@ -49,7 +49,7 @@
 
 ~ 1h 45m
 
-**Max Total: 18h 0m / ~25h**
+**Max Total: 19h 30m / ~25h**
 
 ---
 

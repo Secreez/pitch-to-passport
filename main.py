@@ -290,8 +290,11 @@ class PitchToPassport(cmd.Cmd):
             country_counts = Counter(club_df["NationCode"])
 
             for code, count in country_counts.items():
+                if code not in country_capital_coordinates:
+                    print(f" Note: No coordinates for {code}, skipping")
+                    continue
                 home_coordinates = country_capital_coordinates[code]
-                color = country_colors[code]
+                color = country_colors.get(code, "gray")
 
                 folium.PolyLine(
                     locations=[home_coordinates, stadium_coordinates], color=color, weight=count).add_to(m)
@@ -324,17 +327,25 @@ class PitchToPassport(cmd.Cmd):
         country_counts = Counter(nation_codes)
 
         for code, count in country_counts.items():
+            if code not in country_capital_coordinates:
+                print(f" Note: No coordinates for {code}, skipping")
+                continue
             coord = country_capital_coordinates[code]
-            color = country_colors[code]
+            color = country_colors.get(code, "gray")
+
             folium.PolyLine(
-                locations=[coord, stadium_coordinates], 
-                weight=count, 
+                locations=[coord, stadium_coordinates],
+                weight=count,
                 color=color
             ).add_to(m)
             
         m.save('map.html')
         print("Map saved to map.html — open it in your browser!")
 
+    def do_exit(self, line):
+            """Exit the program: exit"""
+            print("Goodbye!")
+            return True
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

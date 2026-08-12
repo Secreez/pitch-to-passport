@@ -95,4 +95,3 @@ pitch-to-passport/
 
 Code: MIT  
 Data: sourced from FBref — not redistributed
-EOF
