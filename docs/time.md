@@ -35,8 +35,9 @@
 | 08.06 | Further proposal work: Things I could do alone so far without Emily | 10m |
 | 13.06 | Final proposal work: Cleaned up things after discussion, prepped for proposal deliverable, and made it shorter for the 2-page max rule. | 1h 10m |
 | 09.08 | Reflection: Started writing the reflection and accumulated my notes that I wrote down while working on the project. | 45m |
+| 12.08 | Reflection: Done. Good that I made notes while working on the project. | 2h 00m |
 
-~ 3h 35m
+~ 5h 35m
 
 
 ### Data cleaning & ad-hoc pivots
@@ -49,7 +50,7 @@
 
 ~ 1h 45m
 
-**Max Total: 19h 30m / ~25h**
+**Max Total: 21h 20m / ~25h**
 
 ---
 
